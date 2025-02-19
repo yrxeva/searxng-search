@@ -1,42 +1,28 @@
 {
-  "$schema": "../node_modules/@lobehub/chat-plugin-sdk/schema.json",
+  "identifier": "searxng-search-plugin",
+  "version": "1.0",
+  "name": "SearXNG 搜索",
+  "description": "通过 SearXNG 提供的元搜索引擎进行搜索",
   "api": [
     {
-      "url": "http://localhost:3400/api/clothes",
-      "name": "recommendClothes",
-      "description": "根据用户的心情，给用户推荐他有的衣服",
+      "url": "http://localhost:3400/api/searxng",
+      "name": "search",
+      "description": "通过 SearXNG 进行搜索",
       "parameters": {
+        "type": "object",
         "properties": {
-          "mood": {
-            "description": "用户当前的心情，可选值有：开心（happy）, 难过（sad）,生气 （anger）,害怕（fear）,惊喜（ surprise）,厌恶 （disgust）",
-            "enum": ["happy", "sad", "anger", "fear", "surprise", "disgust"],
-            "type": "string"
-          },
-          "gender": {
+          "query": {
             "type": "string",
-            "enum": ["man", "woman"],
-            "description": "对话用户的性别，需要询问用户后才知道这个信息"
+            "description": "搜索关键词"
+          },
+          "baseurl": {
+            "type": "string",
+            "description": "SearXNG 服务的基础 URL"
           }
         },
-        "required": ["mood", "gender"],
-        "type": "object"
+        "required": ["query", "baseurl"]
       }
     }
   ],
-  "author": "LobeHub",
-  "createdAt": "2023-09-03",
-  "gateway": "http://localhost:3400/api/gateway",
-  "homepage": "https://github.com/lobehub/chat-plugin-template",
-  "identifier": "plugin-identifier",
-  "meta": {
-    "avatar": "🚀",
-    "tags": ["template"],
-    "title": "Chat Plugin Template",
-    "description": "This is the plugin template for LobeChat plugin development"
-  },
-  "ui": {
-    "url": "http://localhost:3400",
-    "height": 200
-  },
-  "version": "1"
+  "gateway": "http://localhost:3400/api/gateway"
 }
